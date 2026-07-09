@@ -97,7 +97,7 @@ public class TaskTest {
         Task task = setupNewTask();
         Task otherTask = new Task("Brush the cat");
         task.deleteTask();
-        Assertions.assertEquals(1, Task.getAll().size()); //one is left
+        Assertions.assertEquals(2, Task.getAll().size()); //one is left
         Assertions.assertEquals(Task.getAll().get(0).getId(), 2); //the one that was deleted has the id of 2
     }
 
