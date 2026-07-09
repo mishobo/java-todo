@@ -37,7 +37,7 @@ pipeline {
             }
             stage('Containerize') {
                 steps {
-                    echo "Containerizing application ...."
+                    sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -t ${IMAGE_NAME}:build-${env.BUILD_NUMBER} ."
                 }
             }
             stage('Deploy') {

@@ -108,4 +108,13 @@
             archiveArtifacts artifacts: 'build/install/java-todo/**', fingerprint: true
         }
     }
+```   
+
+## Step 7: Containerizing the application
+```groovy
+    stage('Containerize') {
+        steps {
+            sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -t ${IMAGE_NAME}:build-${env.BUILD_NUMBER} ."
+        }
+    }
 ```        
