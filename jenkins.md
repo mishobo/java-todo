@@ -180,7 +180,6 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=15s --retries=3 \
     CMD wget -qO- http://127.0.0.1:4567/ >/dev/null 2>&1 || exit 1
 
 ENTRYPOINT ["./bin/java-todo"]
-
 ```
 
 ## Step 9: Containerizing the application
