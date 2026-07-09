@@ -46,7 +46,7 @@ pipeline {
             }
             stage('Containerize') {
                 steps {
-                    sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -t ${IMAGE_NAME}:build-${env.BUILD_NUMBER} ."
+                    sh "sudo docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -t ${IMAGE_NAME}:build-${env.BUILD_NUMBER} ."
                 }
             }
             stage('Deploy') {

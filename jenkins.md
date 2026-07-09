@@ -123,11 +123,20 @@
     }
 ```
 
+## Step 8: Install docker service in jenkins container
+
+```cmd
+docker exec -u root  -it jenkins bash
+apt update
+apt upgrade
+apt install docker.io
+```
+
 ## Step 7: Containerizing the application
 ```groovy
     stage('Containerize') {
         steps {
-            sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -t ${IMAGE_NAME}:build-${env.BUILD_NUMBER} ."
+            sh "sudo docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -t ${IMAGE_NAME}:build-${env.BUILD_NUMBER} ."
         }
     }
 ```        
