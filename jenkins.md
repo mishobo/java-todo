@@ -75,3 +75,12 @@
         }
     }
 ```
+
+## Step 4: Building stage
+```groovy
+    stage('Build') {
+        steps {
+            sh './gradlew clean build -x test --no-daemon'
+        }
+    }
+```
