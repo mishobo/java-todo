@@ -84,3 +84,17 @@
         }
     }
 ```
+
+## Step 5: Run application's Tests stage
+```groovy
+    stage('Test') {
+        steps {
+            sh './gradlew test --no-daemon'
+        }
+        post {
+            always {
+                junit testResults: 'build/test-results/test/*.xml', allowEmptyResults: true
+            }
+        }
+    }
+```

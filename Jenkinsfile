@@ -21,12 +21,17 @@ pipeline {
             }
             stage('Test') {
                 steps {
-                    echo "Testing application ..."
+                    sh './gradlew test --no-daemon'
+                }
+                post {
+                    always {
+                        junit testResults: 'build/test-results/test/*.xml', allowEmptyResults: true
+                    }
                 }
             }
             stage('Package') {
                 steps {
-                    echo "Packaging application ..."
+                    sh './gradlew package'
                 }
             }
             stage('Containerize') {
