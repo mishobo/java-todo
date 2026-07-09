@@ -15,9 +15,9 @@
                 }
             }
             stage('Build') {
-                steps { 
-                    echo "Building application ..."
-                }  
+                steps {
+                    sh './gradlew clean build -x test --no-daemon'
+                }
             }
             stage('Test') {
                 steps {
