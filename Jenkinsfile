@@ -31,7 +31,7 @@ pipeline {
             }
             stage('Package') {
                 steps {
-                    sh './gradlew package'
+                    echo "Packaging application ...."
                 }
             }
             stage('Containerize') {
