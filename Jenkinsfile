@@ -1,5 +1,14 @@
 pipeline {
-        agent any       
+        agent any  
+        environment {
+            IMAGE_NAME             = 'mishobo/todo-list-app'
+            CONTAINER_NAME         = 'todo-app'
+            APP_PORT               = '4567'
+            DOCKERHUB_CREDENTIALS  = 'dockerhub-credentials'  // Jenkins Credentials ID: Docker Hub username/password (or access token)
+            DEPLOY_SSH_CREDENTIALS = 'vm-deploy-ssh-key'      // Jenkins Credentials ID: SSH private key
+            DEPLOY_USER            = 'deploy'
+            NOTIFY_EMAIL           = 'team@example.com'       // TODO: replace with your real notification list
+        }     
         stages {
             stage('Checkout') {
                 steps {
