@@ -41,3 +41,8 @@ cd <project-folder>
 ```
 ./gradlew run
 ```
+
+
+1. CI-CD definition and principles - ELizabeth
+2. setup tools jenkins, docker, conneting to GIT basic pipeline : Mwikali
+3. advanced pipeline: vm deployment - Hussein
