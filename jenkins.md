@@ -98,3 +98,14 @@
         }
     }
 ```
+
+## Step 6: Package application
+
+```groovy
+    stage('Package') {
+        steps {
+            sh './gradlew installDist -x test --no-daemon'
+            archiveArtifacts artifacts: 'build/install/java-todo/**', fingerprint: true
+        }
+    }
+```        

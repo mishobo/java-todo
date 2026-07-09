@@ -31,7 +31,8 @@ pipeline {
             }
             stage('Package') {
                 steps {
-                    echo "Packaging application ...."
+                    sh './gradlew installDist -x test --no-daemon'
+                    archiveArtifacts artifacts: 'build/install/java-todo/**', fingerprint: true
                 }
             }
             stage('Containerize') {
