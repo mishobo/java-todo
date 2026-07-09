@@ -136,7 +136,7 @@ apt install docker.io
 ```groovy
     stage('Containerize') {
         steps {
-            sh "sudo docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -t ${IMAGE_NAME}:build-${env.BUILD_NUMBER} ."
+            sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -t ${IMAGE_NAME}:build-${env.BUILD_NUMBER} ."
         }
     }
 ```        
