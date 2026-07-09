@@ -1,6 +1,4 @@
-### Step 1 create a Jenkinsfile template
-```groovy
-    pipeline {
+pipeline {
         agent any       
         stages {
             stage('Clone repository') {
@@ -46,4 +44,3 @@
             }
         }            
     }
-```
