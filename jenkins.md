@@ -1,4 +1,4 @@
-### Step 1 create a Jenkinsfile template
+## Step 1 create a Jenkinsfile template
 ```groovy
     pipeline {
         agent any       
@@ -45,5 +45,33 @@
                 echo "Cleanup workspace"
             }
         }            
+    }
+```
+
+## Step 2: create a jenkins pipeline on the UI
+   - New item
+   - item type pipeline: java-todo-pipeline
+   - configuration: 
+      - pipeline: Pipeline from script from SCM
+      - SCM: GIT
+      - Repository URL: https://github.com/mishobo/java-todo
+      - Branch Specifier: master
+      - Apply & save
+      - run build pipeline manually to test
+
+## Step 3: Cloning stage syntax
+```groovy
+    stage('Checkout') {
+        steps {
+            checkout scm
+            script {
+                env.GIT_COMMIT_SHORT = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+                def branch = (env.BRANCH_NAME ?: env.GIT_BRANCH ?: 'unknown').replaceFirst(/^origin\//, '')
+                env.GIT_BRANCH_NAME = branch
+                env.IS_RELEASE_BRANCH = (branch == 'main' || branch == 'master').toString()
+                env.IMAGE_TAG = "${env.BUILD_NUMBER}-${env.GIT_COMMIT_SHORT}"
+            }
+            echo "Building ${env.GIT_BRANCH_NAME} @ ${env.GIT_COMMIT_SHORT} as ${env.IMAGE_NAME}:${env.IMAGE_TAG} (release branch: ${env.IS_RELEASE_BRANCH})"
+        }
     }
 ```
