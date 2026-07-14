@@ -1,9 +1,7 @@
     pipeline {
         agent {
-            agent {
-                dockerContainer { image 'maven:3.9-eclipse-temurin-17' }
-            }
-        } 
+            dockerContainer { image 'maven:3.9-eclipse-temurin-17' }
+        }
         environment {
             IMAGE_NAME             = 'mishobo/todo-list-app'
             CONTAINER_NAME         = 'todo-app'
