@@ -9,6 +9,12 @@
             DEPLOY_USER            = 'deploy'
             NOTIFY_EMAIL           = 'team@example.com'       // TODO: replace with your real notification list
         }     
+
+        options {
+            timeout(time: 15, unit: 'MINUTES')
+            buildDiscarder(logRotator(numToKeepStr: '10'))
+            disableConcurrentBuilds()
+        }
         stages {
             stage('Checkout') {
                 steps {
