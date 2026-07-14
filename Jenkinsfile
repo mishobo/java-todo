@@ -44,6 +44,17 @@
                     archiveArtifacts artifacts: 'build/install/java-todo/**', fingerprint: true
                 }
             }
+            stage('Credential Test') {
+                steps {
+                    withCredentials([usernamePassword(
+                        credentialsId: 'nexus-credentials',
+                        usernameVariable: 'NEXUS_USER',
+                        passwordVariable: 'NEXUS_PASS'
+                    )]) {
+                    sh 'echo "User: ${NEXUS_USER} Pass: ${NEXUS_PASS}"'
+                }
+            }
+}
             stage('Containerize') {
                 steps {
                     sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -t ${IMAGE_NAME}:build-${env.BUILD_NUMBER} ."
