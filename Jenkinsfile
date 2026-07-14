@@ -1,5 +1,10 @@
     pipeline {
-        agent any  
+        agent {
+            docker {
+                image 'node:18-alpine'
+                args '-v /var/run/docker.sock:/var/run/docker.sock'  // Mount Docker socket to allow Docker commands inside the container}
+            }
+        } 
         environment {
             IMAGE_NAME             = 'mishobo/todo-list-app'
             CONTAINER_NAME         = 'todo-app'
